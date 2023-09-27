@@ -37,6 +37,31 @@ class ClienteService {
   }   
 
 
+  async listar() {
+    try {
+      const clientes = await connection.query(`select
+          id,
+          nome,
+          sobrenome,
+          email,
+          endereco_rua,
+          endereco_numero,
+          endereco_complemento,
+          endereco_bairro,
+          endereco_cidade,
+          endereco_estado,
+          endereco_cep
+          from clientes`);
+
+      return clientes[0];
+    } catch (error) {
+      console.log(error);
+      throw new Error();
+    }
+
+  }  
+
+
 }
 
 
